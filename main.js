@@ -1,4 +1,5 @@
 import { Telegraf, session } from "telegraf";
+import moment from "moment";
 import dotenv from "dotenv";
 import axios from "axios";
 
@@ -51,7 +52,7 @@ bot.on('text', (ctx) => {
                 console.log(response.data);
                 ctx.replyWithPhoto(response.data.data.image, {
                     parse_mode: "HTML",
-                    caption: `<b>F.I.O:</b> <i>${response.data.data.full_name}</i>\n<b>Fakultet:</b> <i>${response.data.data.faculty.name}</i>\n<b>Guruh:</b> <i>${response.data.data.group.name}</i>\n<b>Telefon:</b> <i>${response.data.data.phone}</i>\n<b>Email:</b> <i>${response.data.data.email}</i>\n<b>Passport:\</b> <i>${response.data.data.passport_number}</i>\n<b>Doimiy yashash joyi:</b> <i>${response.data.data.address}</i>\n<b>Tug'ilgan sana:</b> <i>${response.data.data.birth_date}</i>`
+                    caption: `<b>F.I.O:</b> <i>${response.data.data.full_name}</i>\n<b>Fakultet:</b> <i>${response.data.data.faculty.name}</i>\n<b>Guruh:</b> <i>${response.data.data.group.name}</i>\n<b>Telefon:</b> <i>${response.data.data.phone}</i>\n<b>Email:</b> <i>${response.data.data.email}</i>\n<b>Passport:\</b> <i>${response.data.data.passport_number}</i>\n<b>Doimiy yashash joyi:</b> <i>${response.data.data.address}</i>\n<b>Tug'ilgan sana:</b> <i>${moment.unix(response.data.data.birth_date).format('DD-MM-YYYY')}</i>`
                 });
             }).catch((error) => {
                 console.error(error);
